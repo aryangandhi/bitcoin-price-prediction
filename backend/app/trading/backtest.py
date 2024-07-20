@@ -5,7 +5,11 @@ import random
 router = APIRouter()
 
 @router.get("/backtest")
-def get_backtest_data(start_date: datetime, end_date: datetime):
+def get_backtest_data(start_date: str, end_date: str):
+    # Parse the date strings into datetime objects
+    start_date = datetime.strptime(start_date, "%Y-%m-%d")
+    end_date = datetime.strptime(end_date, "%Y-%m-%d")
+    
     date_range = (end_date - start_date).days
     base_date = end_date
     backtest_data = [
@@ -15,7 +19,6 @@ def get_backtest_data(start_date: datetime, end_date: datetime):
         }
         for i in range(date_range)
     ]
-    
     metrics = {
         "cumulative_return": random.uniform(-10, 20),
         "annualized_return": random.uniform(-5, 15),
