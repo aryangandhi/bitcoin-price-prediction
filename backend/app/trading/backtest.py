@@ -15,7 +15,6 @@ def get_backtest_data(start_date: datetime, end_date: datetime):
         }
         for i in range(date_range)
     ]
-    
     metrics = {
         "cumulative_return": random.uniform(-10, 20),
         "annualized_return": random.uniform(-5, 15),
